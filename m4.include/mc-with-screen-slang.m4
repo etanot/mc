@@ -3,6 +3,7 @@ dnl
 dnl Use the slang library.
 dnl
 AC_DEFUN([mc_WITH_SLANG], [
+    with_screen=slang
     found_slang=no
     PKG_CHECK_MODULES(SLANG, [slang >= 2.0], [found_slang=yes], [:])
     if test x"$found_slang" = xno; then
@@ -11,6 +12,14 @@ AC_DEFUN([mc_WITH_SLANG], [
 
     MCLIBS="$SLANG_LIBS $MCLIBS"
     CPPFLAGS="$SLANG_CFLAGS $CPPFLAGS"
+
+    dnl Check if termcap is needed.
+    if test x"$found_slang" = x"yes"; then
+        mc_SLANG_TERMCAP
+        if test x"$mc_cv_slang_termcap"  = x"yes"; then
+            MCLIBS="$MCLIBS -ltermcap"
+        fi
+    fi
 
     screen_type=slang
     screen_msg="S-Lang"
