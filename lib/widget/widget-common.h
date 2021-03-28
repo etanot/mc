@@ -80,7 +80,7 @@ typedef enum
 typedef enum
 {
     WST_DEFAULT = (0 << 0),
-    WST_VISIBLE =  (1 << 0),    /* Widget is visible */
+    WST_VISIBLE = (1 << 0),     /* Widget is visible */
     WST_DISABLED = (1 << 1),    /* Widget cannot be selected */
     WST_IDLE = (1 << 2),
     WST_MODAL = (1 << 3),       /* Widget (dialog) is modal */
